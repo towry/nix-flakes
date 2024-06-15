@@ -2,7 +2,7 @@
   description = "zellij-dev-env";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=24.05";
     flake-utils.url = "github:numtide/flake-utils";
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
@@ -49,7 +49,7 @@
         rustc = rust-toolchain;
       };
       buildInputs =
-        [pkgs.openssl pkgs.curl]
+        [pkgs.openssl pkgs.curl pkgs.protobuf]
         ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [pkgs.libiconv apple_sdk.DiskArbitration apple_sdk.Foundation apple_sdk.Security apple_sdk.SystemConfiguration];
     in {
       packages.default = naersk'.buildPackage {
