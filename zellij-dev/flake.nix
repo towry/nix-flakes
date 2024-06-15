@@ -20,6 +20,7 @@
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {
         inherit system;
+        overlays = [fenix.overlays.default];
       };
       supportedPlatforms = {
         aarch64-darwin = {
@@ -64,7 +65,7 @@
       };
       devShells.default = pkgs.mkShell {
         buildInputs = buildInputs;
-        nativeBuildInputs = [rust-toolchain pkgs.pkg-config pkgs.mandown pkgs.installShellFiles];
+        nativeBuildInputs = [pkgs.rust-analyzer-nightly rust-toolchain pkgs.pkg-config pkgs.mandown pkgs.installShellFiles];
       };
     });
 }
