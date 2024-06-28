@@ -1,6 +1,5 @@
 {
-  description = "zellij-dev-env";
-
+  description = "rust-workspace template";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs?ref=24.05";
     flake-utils.url = "github:numtide/flake-utils";
@@ -9,13 +8,13 @@
     naersk.url = "github:nix-community/naersk";
     naersk.inputs.nixpkgs.follows = "nixpkgs";
   };
-
   outputs = {
     self,
     nixpkgs,
     fenix,
     naersk,
     flake-utils,
+    ...
   }:
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {
@@ -44,15 +43,17 @@
         combine [
           stable.cargo
           stable.rustc
+          stable.rustfmt
+          stable.clippy
           targets.${rustTarget}.stable.rust-std
-          targets.wasm32-wasi.stable.rust-std
+          # targets.wasm32-wasi.stable.rust-std
         ];
       naersk' = pkgs.callPackage naersk {
         cargo = rust-toolchain;
         rustc = rust-toolchain;
       };
       buildInputs =
-        [pkgs.openssl pkgs.curl pkgs.protobuf]
+        [pkgs.openssl]
         ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [pkgs.libiconv apple_sdk.DiskArbitration apple_sdk.Foundation apple_sdk.Security apple_sdk.SystemConfiguration];
     in {
       packages.default = naersk'.buildPackage {
@@ -60,14 +61,11 @@
         buildInputs = buildInputs;
         nativeBuildInputs = [
           pkgs.pkg-config
-          pkgs.perl
-          pkgs.mandown
-          pkgs.installShellFiles
         ];
       };
       devShells.default = pkgs.mkShell {
         buildInputs = buildInputs;
-        nativeBuildInputs = [pkgs.rust-analyzer-nightly rust-toolchain pkgs.pkg-config pkgs.mandown pkgs.installShellFiles];
+        nativeBuildInputs = [pkgs.rust-analyzer-nightly rust-toolchain pkgs.pkg-config];
       };
     });
 }
