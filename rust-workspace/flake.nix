@@ -3,7 +3,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs?ref=24.05";
     flake-utils.url = "github:numtide/flake-utils";
-    fenix.url = "github:nix-community/fenix";
+    fenix.url = "github:nix-community/fenix/monthly";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
     naersk.url = "github:nix-community/naersk";
     naersk.inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +20,7 @@
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
-          (_: super: let pkgs = fenix.inputs.nixpkgs.legacyPackages.${super.system}; in fenix.overlays.default pkgs pkgs)
+          (_: super: let pkgs' = fenix.inputs.nixpkgs.legacyPackages.${super.system}; in fenix.overlays.default pkgs' pkgs')
         ];
       };
       supportedPlatforms = {
@@ -39,7 +39,7 @@
       };
       rustTarget = supportedPlatforms.${system}.rustTarget;
       apple_sdk = pkgs.darwin.apple_sdk.frameworks;
-      rust-toolchain = with fenix.packages.${system};
+      rust-toolchain = with pkgs.fenix;
         combine [
           stable.cargo
           stable.rustc
