@@ -25,7 +25,7 @@
                   lib.const {
                     name = "${pname}-vendor.tar.gz";
                     inherit src;
-                    outputHash = "sha256-fVXt/9ygm4vJ0XfLl5o0/Ki4mvAkq9f4PtZjxzgny1s=";
+                    outputHash = "sha256-u7qHSVI7FvYU9/wh+b+Gm5j6OBZWFY0BSDVPu/Vltms=";
                   }
                 );
                 buildInputs =
