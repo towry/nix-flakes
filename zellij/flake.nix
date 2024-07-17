@@ -18,8 +18,8 @@
                 src = fetchFromGitHub {
                   owner = "towry";
                   repo = "zellij";
-                  rev = "910d657f4e93a320a814e17b5d717b088d86c417";
-                  hash = "sha256-pcrNsqPj17gOp6brFC6pSyUL0rGqtaWHScbfTSGG1l0=";
+                  rev = "fe30f08575c91f31a3a883195f44ffbb8b842769";
+                  hash = "sha256-lfHNMcgEdfiqZPcmGe0A5nmOfws1luAwtBsFdC8X4O0=";
                 };
                 cargoDeps = zellij.cargoDeps.overrideAttrs (
                   lib.const {
