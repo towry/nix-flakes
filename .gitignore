@@ -1,1 +1,4 @@
 target/
+flake.lock
+result
+result/
