@@ -43,6 +43,7 @@
         combine [
           stable.cargo
           stable.rustc
+          # for editor type infer of the std.
           stable.rust-src
           stable.rustfmt
           stable.clippy
@@ -67,9 +68,8 @@
       devShells.default = pkgs.mkShell {
         buildInputs = buildInputs;
         nativeBuildInputs = [pkgs.rust-analyzer-nightly rust-toolchain pkgs.pkg-config];
-        shellHook = ''
-          export RUST_SRC_PATH="${rust-toolchain}/lib/rustlib/src/rust/library";
-        '';
+        # editor need this to find defintions for std types.
+        RUST_SRC_PATH = "${rust-toolchain}/lib/rustlib/src/rust/library";
       };
     });
 }
