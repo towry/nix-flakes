@@ -1,0 +1,30 @@
+name: Run checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths:
+      - "**/*.nix"
+
+jobs:
+  check:
+    runs-on: "ubuntu-22.04"
+    permissions:
+      id-token: "write"
+      contents: "read"
+    steps:
+      - uses: "actions/checkout@v4"
+      - uses: "DeterminateSystems/nix-installer-action@main"
+      - uses: "DeterminateSystems/magic-nix-cache-action@main"
+      - name: Flake build
+        run: nix develop --command build
+      - name: Check formatting
+        run: |
+          git ls-files '*.nix' | xargs nix develop --command alejandra --check
+      - uses: "DeterminateSystems/flakehub-push@main"
+        with:
+          name: "towry/nix-flakes"
+          rolling: true
+          visibility: "public"
+          include-output-paths: true

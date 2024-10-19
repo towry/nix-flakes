@@ -14,18 +14,18 @@
             value = {
               default = zellij.overrideAttrs (attrs: rec {
                 pname = "zellij";
-                version = "0.41.0";
+                version = "0.42.0";
                 src = fetchFromGitHub {
-                  owner = "towry";
+                  owner = "pze";
                   repo = "zellij";
-                  rev = "fe30f08575c91f31a3a883195f44ffbb8b842769";
-                  hash = "sha256-lfHNMcgEdfiqZPcmGe0A5nmOfws1luAwtBsFdC8X4O0=";
+                  rev = "eb4b7fc1072ea1b31c62a702d3a3bd722966eb89";
+                  hash = "sha256-b3sh0gM3bJvDVEC/W3Fr/3CnvQ35fY6v7mvOgjTGrhI=";
                 };
                 cargoDeps = zellij.cargoDeps.overrideAttrs (
                   lib.const {
                     name = "${pname}-vendor.tar.gz";
                     inherit src;
-                    outputHash = "sha256-u7qHSVI7FvYU9/wh+b+Gm5j6OBZWFY0BSDVPu/Vltms=";
+                    outputHash = "sha256-Sp2TaUc1ybe/Ii/5vJAXpeTjCMpopU5B8P98Sm8xbKU=";
                   }
                 );
                 buildInputs =
