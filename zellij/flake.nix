@@ -31,6 +31,7 @@
                 buildInputs =
                   zellij.buildInputs
                   ++ [
+                    curl
                     openssh
                     pkg-config
                     perl
