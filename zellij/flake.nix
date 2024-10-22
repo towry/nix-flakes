@@ -21,13 +21,9 @@
                   rev = "912c9f599f33709b80c78582d7f0e3f3abe18889";
                   hash = "sha256-iItIv1ni+GxYilf4l6zz6tCuUeTyw5DcLUrP9otr/oM=";
                 };
-                cargoDeps = zellij.cargoDeps.overrideAttrs (
-                  lib.const {
-                    name = "${pname}-vendor.tar.gz";
-                    inherit src;
-                    outputHash = "sha256-Sp2TaUc1ybe/Ii/5vJAXpeTjCMpopU5B8P98Sm8xbKU=";
-                  }
-                );
+                cargoDeps = rustPlatform.importCargoLock {
+                  lockFile = ./Cargo.lock;
+                };
                 buildInputs =
                   zellij.buildInputs
                   ++ [
