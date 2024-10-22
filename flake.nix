@@ -31,7 +31,7 @@
             ${getSystem}
             echo "> ================================="
             echo "run build in dir: ''${dir}"
-            nix build ".#packages.''${SYSTEM}.default"
+            nix build --show-trace ".#packages.''${SYSTEM}.default"
           '';
         };
         check = final.writeShellApplication {

@@ -7,6 +7,10 @@ on:
     paths:
       - "**/*.nix"
 
+concurrency:
+  group: ${{ github.workflow }}-$${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   check:
     strategy:
@@ -26,9 +30,3 @@ jobs:
       - name: Check formatting
         run: |
           git ls-files '*.nix' | xargs nix develop --command alejandra --check
-      - uses: "DeterminateSystems/flakehub-push@main"
-        with:
-          name: "towry/nix-flakes"
-          rolling: true
-          visibility: "public"
-          include-output-paths: true
