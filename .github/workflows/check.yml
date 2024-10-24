@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "**/*.nix"
+    workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-$${{ github.head_ref || github.run_id }}
@@ -16,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runner: [ubuntu-22.04, macos-latest]
+        runner: [macos-latest]
     runs-on: ${{ matrix.runner }}
     permissions:
       id-token: "write"
