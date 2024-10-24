@@ -18,8 +18,8 @@
                 src = fetchFromGitHub {
                   owner = "pze";
                   repo = "zellij";
-                  rev = "912c9f599f33709b80c78582d7f0e3f3abe18889";
-                  hash = "sha256-iItIv1ni+GxYilf4l6zz6tCuUeTyw5DcLUrP9otr/oM=";
+                  rev = "a71b18327a82768dd779c0d8f71c0263642c4861";
+                  hash = "sha256-rcgNPSE1xSff1dl/ow57EWivG41/AuuEi2sLUjvr0mg=";
                 };
                 cargoDeps = rustPlatform.importCargoLock {
                   lockFile = ./Cargo.lock;
