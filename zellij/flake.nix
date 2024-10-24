@@ -14,7 +14,7 @@
             value = {
               default = zellij.overrideAttrs (attrs: rec {
                 pname = "zellij";
-                version = "0.42.1";
+                version = "0.42.2";
                 src = fetchFromGitHub {
                   owner = "pze";
                   repo = "zellij";

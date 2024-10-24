@@ -3,9 +3,6 @@ name: Run checks
 on:
   pull_request:
   push:
-    branches: [main]
-    paths:
-      - "**/*.nix"
     workflow_dispatch:
 
 concurrency:
@@ -27,7 +24,7 @@ jobs:
       - uses: "DeterminateSystems/nix-installer-action@main"
       - uses: "DeterminateSystems/magic-nix-cache-action@main"
       - name: Flake build
-        run: nix develop --command build
+        run: nix develop --command check
       - name: Check formatting
         run: |
           git ls-files '*.nix' | xargs nix develop --command alejandra --check
