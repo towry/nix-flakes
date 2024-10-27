@@ -12,14 +12,14 @@
           with import nixpkgs {inherit system;}; {
             name = system;
             value = {
-              default = zellij.overrideAttrs (attrs: rec {
+              default = zellij.overrideAttrs (_attrs: rec {
                 pname = "zellij";
-                version = "0.42.2";
+                version = "0.42.3";
                 src = fetchFromGitHub {
                   owner = "pze";
                   repo = "zellij";
-                  rev = "a71b18327a82768dd779c0d8f71c0263642c4861";
-                  hash = "sha256-rcgNPSE1xSff1dl/ow57EWivG41/AuuEi2sLUjvr0mg=";
+                  rev = "b99cb29e4917651d9a6bcb38b574ac9ecc33ddc3";
+                  hash = "sha256-cPcDjcw6M3AL6JoI2DuuN3RHiiJZCtIX0JjQPUVsN1Q=";
                 };
                 cargoDeps = rustPlatform.importCargoLock {
                   lockFile = ./Cargo.lock;
