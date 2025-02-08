@@ -1,6 +1,6 @@
 {
   description = "Zellij head";
-  inputs.nixpkgs.url = "github:nixos/nixpkgs?ref=24.05";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
   outputs = {
     self,
     nixpkgs,
